@@ -7,10 +7,10 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const configDB = require('./config/database.js');
+// const configDB = require('./config/database.js');
 
 // configuration ===============================================================
-mongoose.connect(configDB.dev); // connect to our database
+// mongoose.connect(configDB.dev); // connect to our database
 // Get Mongoose to use the global promise library
 // mongoose.Promise = global.Promise;
 // //Get the default connection
@@ -30,11 +30,9 @@ app.use(express.static('assets'))
 
 
 // routes ======================================================================
-var deploy = require('./routes/deploy');
-var svn = require('./routes/svn');
+var svn = require('./api/routes/svn.routes');
 
-app.use('/', deploy);
-app.use('/svn', svn);
+app.use('/api/svn', svn);
 
 // launch ======================================================================
 app.listen(port);
